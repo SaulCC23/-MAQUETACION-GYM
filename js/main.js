@@ -29,22 +29,21 @@ $(document).ready(function() {
   
   // Inicializar ResponsiveSlides.js para el slider
   $(".rslides").responsiveSlides({
-      auto: true,             // Boolean: Reproduce automáticamente
-      speed: 300,             // Integer: Velocidad de la transición en milisegundos (más rápido)
-      timeout: 3000,          // Integer: Tiempo entre transiciones automáticas (más corto)
-      pager: false,           // Boolean: Mostrar paginación
-      nav: true,              // Boolean: Mostrar navegación
-      random: false,          // Boolean: Orden aleatorio
-      pause: true,            // Boolean: Pausar al pasar el ratón
-      pauseControls: true,    // Boolean: Pausar cuando los controles están enfocados
-      prevText: "",           // String: Texto para el botón "anterior"
-      nextText: "",           // String: Texto para el botón "siguiente"
-      maxwidth: "",           // Integer: Ancho máximo del contenedor
-      navContainer: ".slider-arrows", // Selector: Dónde colocar los controles
-      manualControls: "",     // Selector: Declarar controles personalizados
-      namespace: "rslides",   // String: Cambiar el espacio de nombres predeterminado
-      before: function(){},   // Function: Callback antes de cada transición
-      after: function(){}     // Function: Callback después de cada transición
+      auto: true,             // Reproduce automáticamente
+      speed: 300,             // Velocidad de la transición (reducida de 500 a 300)
+      timeout: 2000,          // Tiempo entre transiciones (reducido de 4000 a 2000)
+      pager: false,           // No mostrar paginación
+      nav: true,              // Mostrar navegación
+      random: false,          // No orden aleatorio
+      pause: true,            // Pausar al pasar el ratón
+      pauseControls: true,    // Pausar cuando los controles están enfocados
+      prevText: "",           // Texto para el botón "anterior"
+      nextText: "",           // Texto para el botón "siguiente"
+      maxwidth: "",           // Ancho máximo del contenedor
+      navContainer: ".slider-arrows", // Selector para los controles
+      namespace: "rslides",   // Espacio de nombres
+      before: function(){},   // Callback antes de cada transición
+      after: function(){}     // Callback después de cada transición
   });
   
   // Inicializar Fancybox.js para la galería

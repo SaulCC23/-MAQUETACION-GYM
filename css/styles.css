@@ -122,9 +122,11 @@ img {
 .contenedor-slider {
   margin-top: 70px;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.slides {
+.rslides {
   position: relative;
   list-style: none;
   overflow: hidden;
@@ -133,21 +135,21 @@ img {
   margin: 0;
 }
 
-.slides li {
-  position: relative;
+.rslides li {
+  position: absolute;
   width: 100%;
   left: 0;
   top: 0;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.slides li:first-child {
+.rslides li:first-child {
   position: relative;
-  display: block;
-  float: left;
+  opacity: 1;
 }
 
-.slides li img {
+.rslides li img {
   display: block;
   height: auto;
   float: left;
@@ -156,7 +158,6 @@ img {
 }
 
 .texto-fondo {
-  content: 'FITNESS';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -195,16 +196,7 @@ img {
   color: #333;
 }
 
-.controles-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.flechas-slider {
+.slider-arrows {
   position: absolute;
   top: 50%;
   width: 100%;
@@ -212,10 +204,10 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-  pointer-events: none;
+  z-index: 3;
 }
 
-.flechas-slider a {
+.slider-arrows a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,11 +218,10 @@ img {
   color: #fff;
   font-size: 20px;
   transition: background-color 0.3s;
-  pointer-events: auto;
   cursor: pointer;
 }
 
-.flechas-slider a:hover {
+.slider-arrows a:hover {
   background-color: rgba(255, 64, 72, 0.8);
 }
 
@@ -489,28 +480,35 @@ img {
 
   /* Slider móvil */
   .contenedor-slider {
-    height: 60vh;
-    overflow: hidden;
+    height: 100vh;
+    margin-top: 0;
+    position: relative;
   }
 
-  .slides,
-  .slides li {
+  .rslides {
     height: 100%;
   }
 
-  .slides li {
-    background-size: cover;
-    background-position: center;
+  .rslides li {
+    height: 100%;
+    position: relative;
   }
 
-  .slides li img {
-    height: 100%;
+  .rslides li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
   }
 
-  .texto-fondo {
-    display: none;
+  .rslides li img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .contenido-slider {
@@ -518,33 +516,50 @@ img {
     right: auto;
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 300px;
+    max-width: none;
     text-align: center;
-    background: rgba(255, 64, 72, 0.8);
+    background: none;
     padding: 20px;
-    border-radius: 10px;
+    top: 40%;
+    z-index: 2;
   }
 
   .contenido-slider h2 {
     font-size: 2.5rem;
     color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 
   .contenido-slider p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #fff;
+    margin-bottom: 15px;
   }
 
-  .flechas-slider a {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+  .slider-arrows {
+    bottom: 20%;
+    top: auto;
+    transform: none;
   }
 
-  /* Servicios móvil */
+  .slider-arrows a {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Ajuste para que los servicios empiecen justo después del slider */
   .servicios {
-    padding: 40px 0;
+    margin-top: -30vh;
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-top: 40px;
   }
 
   .servicios h2 {
@@ -647,7 +662,7 @@ img {
     transform: translate(-50%, -50%);
   }
   
-  .flechas-slider a {
+  .slider-arrows a {
     width: 40px;
     height: 40px;
     font-size: 16px;
