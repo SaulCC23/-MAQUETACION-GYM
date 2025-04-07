@@ -103,11 +103,19 @@ img {
   background-color: #ff4048;
 }
 
-.menu-movil {
+.menu-toggle {
   display: none;
+  background: none;
+  border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #ff4048;
+  color: #333;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-toggle:focus {
+  outline: none;
 }
 
 /* Slider */
@@ -384,6 +392,7 @@ img {
   visibility: hidden;
   transition: all 0.3s;
   z-index: 999;
+  cursor: pointer;
 }
 
 .boton-subir.activo {
@@ -393,6 +402,7 @@ img {
 
 .boton-subir:hover {
   background-color: #e63038;
+  transform: translateY(-5px);
 }
 
 /* Responsive */
@@ -405,10 +415,10 @@ img {
     height: 30px;
   }
 
-  .menu-movil {
+  .menu-toggle {
     display: block;
-    font-size: 24px;
-    color: #333;
+    z-index: 1001;
+    position: relative;
   }
 
   .menu-principal {
@@ -418,10 +428,11 @@ img {
     width: 100%;
     height: calc(100vh - 70px);
     background-color: rgba(255, 64, 72, 0.95);
-    transition: left 0.3s;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
   }
 
-  .menu-principal.activo {
+  .menu-principal.active {
     left: 0;
   }
 

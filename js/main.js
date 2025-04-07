@@ -3,15 +3,28 @@ $(document).ready(function() {
   new WOW().init();
   
   // Menú responsive con jQuery
-  $('.menu-toggle').click(function() {
-      $('.main-nav').toggleClass('active');
+  $('.menu-toggle').on('click', function() {
+      $('.menu-principal').toggleClass('active');
       $('body').toggleClass('menu-open');
   });
   
   // Cerrar menú al hacer clic en un enlace
-  $('.main-nav a').click(function() {
-      $('.main-nav').removeClass('active');
+  $('.menu-principal a').on('click', function() {
+      $('.menu-principal').removeClass('active');
       $('body').removeClass('menu-open');
+  });
+  
+  // Cerrar menú al hacer clic fuera
+  $(document).on('click', function(e) {
+      if (!$(e.target).closest('.menu-principal, .menu-toggle').length) {
+          $('.menu-principal').removeClass('active');
+          $('body').removeClass('menu-open');
+      }
+  });
+  
+  // Prevenir el cierre del menú al hacer clic en el menú mismo
+  $('.menu-principal').on('click', function(e) {
+      e.stopPropagation();
   });
   
   // Inicializar ResponsiveSlides.js para el slider
@@ -49,16 +62,16 @@ $(document).ready(function() {
       transitionEffect: "fade"
   });
   
-  // Botón de subir con jQuery
-  $(window).scroll(function() {
+  // Botón de subir
+  $(window).on('scroll', function() {
       if ($(this).scrollTop() > 300) {
-          $('.back-to-top').addClass('active');
+          $('#back-to-top').addClass('activo');
       } else {
-          $('.back-to-top').removeClass('active');
+          $('#back-to-top').removeClass('activo');
       }
   });
   
-  $('.back-to-top').click(function(e) {
+  $('#back-to-top').on('click', function(e) {
       e.preventDefault();
       $('html, body').animate({scrollTop: 0}, 800);
   });
